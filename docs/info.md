@@ -13,7 +13,7 @@ A compact analog spiking neuron
 
 ## How to test
 
-Tune 5 external controls (IrefA, IrefB, BiasC, BiasD, and Iin) and generate firning patterns from Vout.
+Tune 5 external controls (IREFA, IREFB, BIASC, BIASD, and VCORE) and generate firning patterns from Vout.
 
 ## External hardware
 
