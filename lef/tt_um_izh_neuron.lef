@@ -441,7 +441,7 @@ MACRO tt_um_izh_neuron
   END VGND
   OBS
       LAYER nwell ;
-        RECT 58.150 124.650 125.110 181.390 ;
+        RECT 58.150 124.650 143.930 181.580 ;
       LAYER li1 ;
         RECT 47.550 41.250 152.750 184.100 ;
       LAYER met1 ;
