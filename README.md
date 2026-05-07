@@ -1,36 +1,50 @@
-![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg)
+# SKY130 Spiking Neuron
 
-# Tiny Tapeout Analog Project Template
+CMOS realization of an Izhikevich-style spiking neuron.
 
-- [Read the documentation for project](docs/info.md)
+This is a Tiny Tapeout analog project in one `1x2` tile.
+It uses SKY130 1.8 V devices.
+The circuit is fully analog.
+The digital pins and clock are not used.
 
-## What is Tiny Tapeout?
+![Layout](img/layout-6pins.png)
 
-Tiny Tapeout is an educational project that aims to make it easier and cheaper than ever to get your digital designs manufactured on a real chip.
+## Circuit
 
-To learn more and get started, visit https://tinytapeout.com.
+The circuit is inspired by the `V` and `U` dynamics of the Izhikevich neuron.
+These act like membrane voltage and recovery behavior.
 
-## Analog projects
+CMOS OTAs, current mirrors, resistors, and MIM capacitors create the analog dynamics.
+The large repeated layout blocks include matched transistor arrays, resistor structures, and capacitors.
+An output buffer drives the spike waveform at `VOUT`.
 
-For specifications and instructions, see the [analog specs page](https://tinytapeout.com/specs/analog/).
+## Analog Pins
 
-## Enable GitHub actions to build the results page
+This version uses six analog pins.
+Five pins are controls.
+One pin is the output.
 
-- [Enabling GitHub Pages](https://tinytapeout.com/faq/#my-github-action-is-failing-on-the-pages-part)
+| Pin | Name | Use |
+| --- | --- | --- |
+| `ua[0]` | `VCORE` | Core control node |
+| `ua[1]` | `IREFB` | Reference or bias input B |
+| `ua[2]` | `VOUT` | Spike output voltage |
+| `ua[3]` | `IREFA` | Reference or bias input A |
+| `ua[4]` | `BIASC` | Control bias C |
+| `ua[5]` | `BIASD` | Control bias D |
 
-## Resources
+## How To Use
 
-- [FAQ](https://tinytapeout.com/faq/)
-- [Digital design lessons](https://tinytapeout.com/digital_design/)
-- [Learn how semiconductors work](https://tinytapeout.com/siliwiz/)
-- [Join the community](https://tinytapeout.com/discord)
+Power the chip from `VDPWR = 1.8 V`.
+Apply quiet analog voltages to `VCORE`, `IREFB`, `IREFA`, `BIASC`, and `BIASD`.
+Observe `VOUT` with an oscilloscope or DAQ.
 
-## What next?
+Changing the control pins changes the spike shape, rate, and stability.
+The circuit can show spike-like relaxation oscillation.
+It is an analog CMOS neuron, not a digital simulator of the equation.
 
-- [Submit your design to the next shuttle](https://app.tinytapeout.com/).
-- Edit [this README](README.md) and explain your design, how it works, and how to test it.
-- Share your project on your social network of choice:
-  - LinkedIn [#tinytapeout](https://www.linkedin.com/search/results/content/?keywords=%23tinytapeout) [@TinyTapeout](https://www.linkedin.com/company/100708654/)
-  - Mastodon [#tinytapeout](https://chaos.social/tags/tinytapeout) [@matthewvenn](https://chaos.social/@matthewvenn)
-  - X (formerly Twitter) [#tinytapeout](https://twitter.com/hashtag/tinytapeout) [@tinytapeout](https://twitter.com/tinytapeout)
-  - Bluesky [@tinytapeout.com](https://bsky.app/profile/tinytapeout.com)
+## Project Info
+
+Top module: `tt_um_izh_neuron`
+
+Authors: Abdulkarim Alorf, Tomohisa Kawakami
